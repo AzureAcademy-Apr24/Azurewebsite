@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure Academy - Training & Resources</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #0078d4; /* Azure blue */
+            --secondary-color: #2b88d8;
+            --accent-color: #50e6ff;
+            --dark-color: #333;
+            --light-color: #f4f4f4;
+            --success-color: #107c10;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            padding: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            padding: 0 15px;
+        }
+        
+        .nav-links a {
+            padding: 10px 0;
+            display: block;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        /* Courses Section */
+        .courses {
+            padding: 60px 0;
+            background-color: var(--light-color);
+        }
+        
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .course-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .course-image {
+            height: 200px;
+            background-color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .course-content {
+            padding: 20px;
+        }
+        
+        .course-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .course-card p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        .course-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        
+        .course-level {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .testimonial-card {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .testimonial-name {
+            font-weight: bold;
+        }
+        
+        .testimonial-role {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 60px 0;
+            background-color: var(--light-color);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-image {
+            height: 300px;
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .about-text h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .contact-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 15px;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .contact-icon {
+            color: var(--primary-color);
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .contact-form {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            height: 120px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links li {
+            margin: 0 15px;
+        }
+        
+        .footer-links a {
+            color: white;
+        }
+        
+        .social-links {
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.2rem;
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .about-content,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                height: 200px;
+            }
+        }
+    </style>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <span class="logo-icon"><i class="fas fa-cloud"></i></span>
+                    Azure Academy
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <a href="#contact" class="btn">Get Started</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Master Azure & DevOps Skills</h1>
+            <p>Comprehensive training for Azure services, Azure DevOps, and modern DevOps tools to accelerate your cloud journey</p>
+            <a href="#courses" class="btn">Explore Courses</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Our Training</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-code"></i></div>
+                    <h3>Hands-on Learning</h3>
+                    <p>Practical exercises and real-world scenarios to help you apply concepts immediately</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>Industry Expert Instructors</h3>
+                    <p>Learn from certified professionals with extensive experience in Azure and DevOps</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-project-diagram"></i></div>
+                    <h3>Project-Based Approach</h3>
+                    <p>Build complete CI/CD pipelines and cloud solutions throughout the training</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="courses">
+        <div class="container">
+            <h2 class="section-title">Our Courses</h2>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-image">
+                        <i class="fab fa-microsoft"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>Azure Fundamentals</h3>
+                        <p>Get started with Microsoft Azure cloud services, infrastructure, and key concepts.</p>
+                        <a href="#" class="btn">Learn More</a>
+                        <div class="course-info">
+                            <span class="course-level">Beginner</span>
+                            <span>24 Hours</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>Azure DevOps CI/CD Mastery</h3>
+                        <p>Build efficient pipelines using Azure DevOps for continuous integration and delivery.</p>
+                        <a href="#" class="btn">Learn More</a>
+                        <div class="course-info">
+                            <span class="course-level">Intermediate</span>
+                            <span>32 Hours</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>Infrastructure as Code with Azure</h3>
+                        <p>Master Terraform, ARM templates, and Bicep for Azure infrastructure deployment.</p>
+                        <a href="#" class="btn">Learn More</a>
+                        <div class="course-info">
+                            <span class="course-level">Advanced</span>
+                            <span>40 Hours</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Students Say</h2>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"The Azure DevOps CI/CD course transformed our team's workflow. The instructor's expertise and practical approach helped us implement automation that reduced our deployment time by 70%."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">JD</div>
+                    <div>
+                        <div class="testimonial-name">John Doe</div>
+                        <div class="testimonial-role">DevOps Engineer at TechCorp</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"As someone transitioning to cloud roles, the Azure Fundamentals course provided the perfect foundation. The hands-on labs were particularly valuable, and I passed the AZ-900 certification on my first attempt!"</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">JS</div>
+                    <div>
+                        <div class="testimonial-name">Jane Smith</div>
+                        <div class="testimonial-role">Cloud Solutions Architect</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="about-text">
+                    <h2>Your Trusted Azure & DevOps Training Partner</h2>
+                    <p>With over a decade of experience in cloud technologies and DevOps practices, our team of certified experts is dedicated to empowering individuals and organizations with the skills needed to thrive in today's fast-paced tech environment.</p>
+                    <p>Our training programs combine theoretical knowledge with practical hands-on experience, ensuring you not only understand concepts but can apply them in real-world scenarios.</p>
+                    <p>We pride ourselves on staying current with the latest Azure features and DevOps methodologies, continuously updating our curriculum to reflect industry best practices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p>Have questions about our courses or need custom training solutions for your organization? Reach out to us!</p>
+                    <div class="contact-info-item">
+                        <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+                        <span>123 Cloud Street, Tech City, TC 10010</span>
+                    </div>
+                    <div class="contact-info-item">
+                        <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+                        <span>info@azureacademy.com</span>
+                    </div>
+                    <div class="contact-info-item">
+                        <span class="contact-icon"><i class="fas fa-phone"></i></span>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">Azure Academy</div>
+            <ul class="footer-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Azure Academy. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Basic form handling
+        const form = document.querySelector('.contact-form');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thanks for your message! We will get back to you soon.');
+                form.reset();
+            });
+        }
+    </script>
+</body>
+</html>
